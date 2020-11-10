@@ -1,0 +1,39 @@
+﻿@page "/products"
+
+@using BlazorApp.Data
+@inject ProductService ProductService
+
+<h3>Products: </h3>
+
+@if (Products != null)
+{
+    <form class="form-group">
+        <select class="form-control" @onchange="ProductService.ProductSelected" size="1" style="width:20%">
+            @foreach (var item in Products)
+            {
+                <option value="@item.Id.ToString()">@item.Name  &#8211; $@item.Price</option>
+            }
+
+        </select>
+    </form>
+
+
+    @if (ProductService.SelectedProduct != null)
+    {
+        <br />
+        <div>
+            Selected product: @ProductService.SelectedProduct.Name
+        </div>
+    }
+}
+
+
+@code {
+    private List<Product> Products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Products = await ProductService.GetProductAsync();
+    }
+
+}

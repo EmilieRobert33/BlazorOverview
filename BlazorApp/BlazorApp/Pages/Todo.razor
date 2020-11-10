@@ -1,0 +1,35 @@
+﻿@page "/todo"
+
+@using BlazorApp.Data
+@inject TodoItemService ServiceTodo
+
+<h3>Todo (@ServiceTodo.todos.Count(todo => todo.IsDone == false))</h3>
+
+
+<ul class="list-group col-lg-4">
+    @foreach (var todo in ServiceTodo.todos)
+    {
+        <li class="list-group-item">
+            @todo.Title
+            <input @bind="todo.IsDone" type="checkbox">
+
+        </li>
+    }
+</ul>
+<form>
+    <input @bind="ServiceTodo.newTodo" placeholder="Something todo" />
+    <button @onclick="AddTodoToList" class="btn btn-primary">Ajouter</button>
+</form>
+
+
+
+
+
+@code {
+    
+    public void AddTodoToList()
+    {
+        ServiceTodo.AddTodo();
+    }
+
+}
