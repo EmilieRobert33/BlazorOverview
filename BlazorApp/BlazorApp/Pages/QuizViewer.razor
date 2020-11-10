@@ -56,15 +56,8 @@ else
     void UpdateScore(int chosenAnswerIndex, int quizIndex)
     {
         var quizItem = quiz[quizIndex];
-
-        if (chosenAnswerIndex == quizItem.AnswerIndex)
-        {
-            quizScores[quizIndex] = quizItem.Score;
-        }
-        else
-        {
-            quizScores[quizIndex] = 0;
-        }
+        
+        quizScores[quizIndex] = chosenAnswerIndex == quizItem.AnswerIndex ? quizItem.Score : 0;
 
         currentScore = quizScores.Sum();
     }
