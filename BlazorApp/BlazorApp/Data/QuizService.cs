@@ -14,17 +14,31 @@ namespace BlazorApp.Data
             Quiz = new List<QuizItem>{
                 new QuizItem
                 {
-                    Question = "Which of the following is the name of a Leonardo da Vinci's masterpiece?",
-                    Choices = new List<string> {"Sunflowers", "Mona Lisa", "The Kiss"},
-                    AnswerIndex = 1,
+                    Question = "HTML are web pages read and rendered by",
+                    Choices = new List<string> { "Web Browser", "Interpreter", "Server", "Compiler"},
+                    AnswerIndex = 0,
                     Score = 3
                 },
                 new QuizItem
                 {
-                    Question = "Which of the following novels was written by Miguel de Cervantes?",
-                    Choices = new List<string> {"The Ingenious Gentleman Don Quixote of La Mancia", "The Life of Gargantua and of Pantagruel", "One Hundred Years of Solitude"},
-                    AnswerIndex = 0,
+                    Question = "What tag is used to display a picture in a HTML page?",
+                    Choices = new List<string> { "Src", "Image", "Img","Picture"},
+                    AnswerIndex = 2,
+                    Score = 3
+                },
+                new QuizItem
+                {
+                    Question = "What should be the first tag in any HTML Document?",
+                    Choices = new List<string> {"<title>", "<!dooctype html>", "<head>", "<html>"},
+                    AnswerIndex = 1,
                     Score = 5
+                },
+                new QuizItem
+                {
+                    Question = "What type of a language is HTML?",
+                    Choices = new List<string> {"Programming Language", "Mark up Language", "Network Protocol","Scripting Language"},
+                    AnswerIndex = 1,
+                    Score = 2
                 }
             };            
         }
