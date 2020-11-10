@@ -31,6 +31,7 @@ namespace BlazorApp
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<ProductService>();
             services.AddSingleton<TodoItemService>();
+            services.AddSingleton<QuizService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

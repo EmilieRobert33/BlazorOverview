@@ -1,0 +1,70 @@
+﻿@page "/quizviewer"
+
+@using BlazorApp.Data
+@inject QuizService QuizRepository
+
+<h3>Quiiiiiiiiiiiiz !!</h3>
+<div>
+    <p>Your current score is @currentScore</p>
+</div>
+
+@if (quiz == null)
+{
+    <p><em>loading...</em></p>
+}
+else
+{
+    int quizIndex = 0;
+    @foreach (var quizItem in quiz)
+    {
+        <section>
+            <h4>@quizItem.Question</h4>
+            <form>
+                <div class="form-check">
+                    @{
+                        int choiceIndex = 0;
+                        quizScores.Add(0);
+                    }
+
+                    @foreach (var choice in quizItem.Choices)
+                    {
+                        int currentQuizIndex = quizIndex;
+                        <input class="form-check-input" type="radio" name="@quizIndex" value="@choiceIndex"
+                               @onchange="@((eventArgs) => UpdateScore(Convert.ToInt32(eventArgs.Value),
+                                            currentQuizIndex))" />@choice<br>
+                                            choiceIndex++;
+                                        }
+                </div>
+            </form>
+        </section>
+        quizIndex++;
+    }
+}
+
+@code {
+    List<QuizItem> quiz;
+    List<int> quizScores = new List<int>();
+
+    int currentScore = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        quiz = await QuizRepository.GetQuizAsync();
+    }
+
+    void UpdateScore(int chosenAnswerIndex, int quizIndex)
+    {
+        var quizItem = quiz[quizIndex];
+
+        if (chosenAnswerIndex == quizItem.AnswerIndex)
+        {
+            quizScores[quizIndex] = quizItem.Score;
+        }
+        else
+        {
+            quizScores[quizIndex] = 0;
+        }
+
+        currentScore = quizScores.Sum();
+    }
+}
